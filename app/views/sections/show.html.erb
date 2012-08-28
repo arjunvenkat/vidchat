@@ -1,0 +1,256 @@
+<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+  <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+  var apiKey = <%= @API_KEY %>;
+  var sessionId = "<%= @section.session_id %>";
+  var token = "<%= session[:token] %>";
+
+  var session;
+  var publisher;
+  var subscribers ={}
+  var VIDEO_WIDTH = 320;
+  var VIDEO_HEIGHT = 240;
+
+  TB.setLogLevel(TB.DEBUG);
+  TB.addEventListener(TB.EXCEPTION, exceptionHandler);
+
+  function exceptionHandler(event) {
+    if (event.code == 1013) {
+      document.body.innerHTML = "This page is trying to connect a third client to an OpenTok peer-to-peer session. "
+        + "Only two clients can connect to peer-to-peer sessions.";
+    } else {
+      alert("Exception: " + event.code + "::" + event.message);
+    }
+  }
+
+  if (TB.checkSystemRequirements() != TB.HAS_REQUIREMENTS) {
+      alert("You don't have the minimum requirements to run this application."
+          + "Please upgrade to the latest version of Flash.");
+    } else {
+      session = TB.initSession(sessionId);  // Initialize session
+
+      // Add event listeners to the session
+      session.addEventListener('sessionConnected', sessionConnectedHandler);
+      session.addEventListener('sessionDisconnected', sessionDisconnectedHandler);
+      session.addEventListener('connectionCreated', connectionCreatedHandler);
+      session.addEventListener('connectionDestroyed', connectionDestroyedHandler);
+      session.addEventListener('streamCreated', streamCreatedHandler);
+      session.addEventListener('streamDestroyed', streamDestroyedHandler);
+    }
+
+
+
+    function connect() {
+      session.connect(apiKey, token);
+      hide('connectLink')
+      show('disconnectLink')
+      show('publishLink')
+
+    }
+
+    function disconnect() {
+      session.disconnect();
+      hide('disconnectLink');
+      hide('publishLink');
+      hide('unpublishLink');
+    }
+
+    function startPublishing() {
+      if (!publisher) {
+        var parentDiv = document.getElementById("myCamera");
+        var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
+        publisherDiv.setAttribute('id', 'opentok_publisher');
+        parentDiv.appendChild(publisherDiv);
+        var publisherProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+        publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);  // Pass the replacement div id and properties
+        session.publish(publisher);
+        show('unpublishLink');
+        hide('publishLink');
+        show('largeLink');
+        show('smallLink');
+      }
+    }
+
+    function stopPublishing() {
+      if (publisher) {
+        session.unpublish(publisher);
+      }
+      publisher = null;
+
+      show('publishLink');
+      hide('unpublishLink');
+      hide('regularLink');
+      hide('largeLink')
+      hide('smallLink')
+    }
+
+    function makeLarge() {
+      session.unpublish(publisher);
+      var parentDiv = document.getElementById("myCamera");
+      var publisherDiv = document.createElement('div');
+      publisherDiv.setAttribute('id', 'opentok_publisher');
+      parentDiv.appendChild(publisherDiv);
+      var publisherProps = {width: 640, height: 480};
+      publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
+      session.publish(publisher);
+      show('regularLink');
+      show('smallLink');
+      hide('largeLink');
+
+    }
+
+    function makeSmall() {
+      session.unpublish(publisher);
+      var parentDiv = document.getElementById("myCamera");
+      var publisherDiv = document.createElement('div');
+      publisherDiv.setAttribute('id', 'opentok_publisher');
+      parentDiv.appendChild(publisherDiv);
+      var publisherProps = {width: 160, height: 120};
+      publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
+      session.publish(publisher);
+      show('regularLink');
+      show('largeLink');
+      hide('smallLink');
+
+
+    }
+
+    function makeRegular() {
+      session.unpublish(publisher);
+      var parentDiv = document.getElementById("myCamera");
+      var publisherDiv = document.createElement('div');
+      publisherDiv.setAttribute('id', 'opentok_publisher');
+      parentDiv.appendChild(publisherDiv);
+      var publisherProps = {width: 320, height: 240};
+      publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
+      session.publish(publisher);
+      show('largeLink');
+      show('smallLink');
+      hide('regularLink');
+    }
+
+
+
+    function sessionConnectedHandler(event) {
+      // Subscribe to all streams currently in the Session
+      for (var i = 0; i < event.streams.length; i++) {
+        addStream(event.streams[i]);
+      }
+      show('disconnectLink');
+      show('publishLink');
+      hide('connectLink');
+    }
+
+    function streamCreatedHandler(event) {
+      // Subscribe to the newly created streams
+      for (var i = 0; i < event.streams.length; i++) {
+        addStream(event.streams[i]);
+      }
+    }
+
+    function streamDestroyedHandler(event) {
+      // This signals that a stream was destroyed. Any Subscribers will automatically be removed.
+      // This default behaviour can be prevented using event.preventDefault()
+    }
+
+    function sessionDisconnectedHandler(event) {
+      // This signals that the user was disconnected from the Session. Any subscribers and publishers
+      // will automatically be removed. This default behaviour can be prevented using event.preventDefault()
+      publisher = null;
+
+      show('connectLink');
+      hide('disconnectLink');
+      hide('publishLink');
+      hide('unpublishLink');
+      hide('regularLink');
+      hide('largeLink')
+      hide('smallLink')
+    }
+
+    function connectionDestroyedHandler(event) {
+      // This signals that connections were destroyed
+    }
+
+    function connectionCreatedHandler(event) {
+      // This signals new connections have been created.
+    }
+
+
+
+
+    function addStream(stream) {
+      // Check if this is the stream that I am publishing, and if so do not publish.
+      if (stream.connection.connectionId == session.connection.connectionId) {
+        return;
+      }
+      var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
+      subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
+      document.getElementById("subscribers").appendChild(subscriberDiv);
+      var subscriberProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+      subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
+    }
+
+    function show(id) {
+      document.getElementById(id).style.display = 'inline';
+    }
+
+    function hide(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+</script>
+
+
+<p>
+  <b>User:</b>
+  <%= @section.user_id %>
+</p>
+
+<p>
+  <b>Session:</b>
+  <%= @section.session_id %>
+</p>
+
+<p>
+  <% if session[:token].present? %>
+    <b>Token:</b> <%= session[:token] %>
+    <%= link_to "Get New Token", "/sections/#{@section.id}/get_token" %>
+  <% else %>
+    <%= link_to "Get Token", "/sections/#{@section.id}/get_token" %>
+  <% end %> 
+</p>
+
+<div id="links">
+      <p>
+        <input type="button" value="Connect" id ="connectLink" onClick="javascript:connect()" />
+        <input type="button" value="Leave" id ="disconnectLink" onClick="javascript:disconnect()" />
+        <input type="button" value="Start Publishing" id ="publishLink" onClick="javascript:startPublishing()" />
+        <input type="button" value="Stop Publishing" id ="unpublishLink" onClick="javascript:stopPublishing()" />
+      <p>
+      <p>
+        <input type="button" value="Large" id ="largeLink" onClick="javascript:makeLarge()" />
+        <input type="button" value="Small" id ="smallLink" onClick="javascript:makeSmall()" />
+        <input type="button" value="Regular" id ="regularLink" onClick="javascript:makeRegular()" />
+      </p>
+</div>
+
+<div id="myCamera" class="publisherContainer"></div>
+<div id="subscribers"></div>
+
+<script type="text/javascript" charset="utf-8">
+    show('connectLink');
+    hide('disconnectLink')
+    hide('publishLink')
+    hide('unpublishLink')
+    hide('largeLink')
+    hide('smallLink')
+    hide('regularLink')
+</script>
+
+
+
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>
