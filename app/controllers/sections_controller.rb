@@ -27,6 +27,12 @@ class SectionsController < ApplicationController
     @API_KEY = "17321802"               # should be a string
     @API_SECRET = "3a90fda1362d50aed4b04f3f01456153d2e956be"
 
+    if session["user_id"] == @section.user_id
+      @role = "teacher"
+    else 
+      @role = "student"
+    end 
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @section }
@@ -77,14 +83,16 @@ class SectionsController < ApplicationController
 
     if session[:user_id] == @section.user_id
       ot_role = OpenTok::RoleConstants::MODERATOR
+      role = "teacher"
     else
       ot_role = OpenTok::RoleConstants::PUBLISHER
+      role = "student"
      end
 
-    @API_KEY = '17321802'
+    @API_KEY = '17321802' 
     @API_SECRET = '3a90fda1362d50aed4b04f3f01456153d2e956be'
     @OTSDK = OpenTok::OpenTokSDK.new @API_KEY, @API_SECRET
-    session[:token] = @OTSDK.generateToken :session_id => @session_id, :role => ot_role
+    session[:token] = @OTSDK.generateToken :session_id => @session_id, :role => ot_role, :connection_data => role
 
     redirect_to :back
   end

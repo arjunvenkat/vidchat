@@ -8,6 +8,7 @@
   var sessionId = "<%= @section.session_id %>";
   var token = "<%= session[:token] %>";
 
+
   var session;
   var publisher;
   var subscribers ={}
@@ -136,6 +137,8 @@
 
     function sessionConnectedHandler(event) {
       // Subscribe to all streams currently in the Session
+      console.log(event)
+      for (var i = 0; i < event.connections.length; i++) { alert(event.connections[i].data) };
       for (var i = 0; i < event.streams.length; i++) {
         addStream(event.streams[i]);
       }
@@ -183,13 +186,19 @@
 
     function addStream(stream) {
       // Check if this is the stream that I am publishing, and if so do not publish.
-      if (stream.connection.connectionId == session.connection.connectionId) {
-        return;
-      }
+      // if (stream.connection.connectionId == session.connection.connectionId) {
+      //   return;
+      // }
       var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
       subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
+      var data = stream.connection.data;
       document.getElementById("subscribers").appendChild(subscriberDiv);
-      var subscriberProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+        if (stream.connection.data == "teacher"){
+          var subscriberProps = {width: 500, height: 300};
+        }
+        else {
+          var subscriberProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+        }
       subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
     }
 
@@ -203,7 +212,7 @@
 
 </script>
 
-
+role: <%= @role %> 
 <p>
   <b>User:</b>
   <%= @section.user_id %>
