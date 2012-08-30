@@ -3,6 +3,16 @@
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
 <% end %>
 
+<!--Load the OrbiterMicro JavaScript library (non-minified version). Use during development.-->
+<script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest.js"></script>
+<!--Load the OrbiterMicro JavaScript library (minified version). Use for production.-->
+<!--<script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest_min.js"></script>-->
+ 
+<!--Load UnionDraw application code-->
+<%= javascript_include_tag "uniondraw" %>
+
+<!-- <script src="UnionDraw.js"></script>
+ -->
 <script type="text/javascript" charset="utf-8">
   var apiKey = <%= @API_KEY %>;
   var sessionId = "<%= @section.session_id %>";
@@ -68,6 +78,7 @@
         var publisherProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
         publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);  // Pass the replacement div id and properties
         session.publish(publisher);
+
         show('unpublishLink');
         hide('publishLink');
         show('largeLink');
@@ -197,7 +208,7 @@
           document.getElementById("teacher").appendChild(subscriberDiv);
         }
         else {
-          document.getElementById("subscribers").appendChild(subscriberDiv);
+          document.getElementById("students").appendChild(subscriberDiv);
           var subscriberProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
         }
       subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
@@ -249,7 +260,39 @@ role: <%= @role %>
 
 <div id="myCamera" class="publisherContainer"></div>
 <div id="teacher"></div>
-<div id="subscribers"></div>
+<div id="students"></div>
+
+
+  <!--Drop down menus for selecting line thickness and color-->
+<!--   <div id="controls">
+    Size:
+    <select id="thickness" class="fixed">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+ 
+    Color:
+    <select id="color">
+      <option value="#FFFFFF">#FFFFFF</option>
+      <option value="#AAAAAA">#AAAAAA</option>
+      <option value="#666666">#666666</option>
+      <option value="#000000">#000000</option>
+      <option value="#9BA16C">#9BA16C</option>
+      <option value="#CC8F2B">#CC8F2B</option>
+      <option value="#63631D">#63631D</option>
+    </select>
+  </div> -->
+ 
+  <!--The canvas where drawings will be displayed-->
+  <!-- <canvas id="canvas"></canvas> -->
+ 
+  <!--A status text field, for displaying connection information-->
+  <!-- <div id="status"></div> -->
 
 
 <script type="text/javascript" charset="utf-8">
