@@ -192,11 +192,12 @@
       var subscriberDiv = document.createElement('div'); // Create a div for the subscriber to replace
       subscriberDiv.setAttribute('id', stream.streamId); // Give the replacement div the id of the stream as its id.
       var data = stream.connection.data;
-      document.getElementById("subscribers").appendChild(subscriberDiv);
         if (stream.connection.data == "teacher"){
-          var subscriberProps = {width: 500, height: 300};
+          var subscriberProps = {width: 960, height: 600};
+          document.getElementById("teacher").appendChild(subscriberDiv);
         }
         else {
+          document.getElementById("subscribers").appendChild(subscriberDiv);
           var subscriberProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
         }
       subscribers[stream.streamId] = session.subscribe(stream, subscriberDiv.id, subscriberProps);
@@ -247,7 +248,9 @@ role: <%= @role %>
 </div>
 
 <div id="myCamera" class="publisherContainer"></div>
+<div id="teacher"></div>
 <div id="subscribers"></div>
+
 
 <script type="text/javascript" charset="utf-8">
     show('connectLink');
