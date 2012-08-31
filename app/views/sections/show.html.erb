@@ -1,18 +1,10 @@
+<h1></h1>
 <p id="notice"><%= notice %></p>
 <% content_for :head do %>
   <script src="http://staging.tokbox.com/v0.91/js/TB.min.js" type="text/javascript" charset="utf-8"></script>
 <% end %>
 
-<!--Load the OrbiterMicro JavaScript library (non-minified version). Use during development.-->
-<script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest.js"></script>
-<!--Load the OrbiterMicro JavaScript library (minified version). Use for production.-->
-<!--<script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest_min.js"></script>-->
- 
-<!--Load UnionDraw application code-->
-<%= javascript_include_tag "uniondraw" %>
 
-<!-- <script src="UnionDraw.js"></script>
- -->
 <script type="text/javascript" charset="utf-8">
   var apiKey = <%= @API_KEY %>;
   var sessionId = "<%= @section.session_id %>";
@@ -22,8 +14,8 @@
   var session;
   var publisher;
   var subscribers ={}
-  var VIDEO_WIDTH = 320;
-  var VIDEO_HEIGHT = 240;
+  var VIDEO_WIDTH = 160;
+  var VIDEO_HEIGHT = 120;
 
   TB.setLogLevel(TB.DEBUG);
   TB.addEventListener(TB.EXCEPTION, exceptionHandler);
@@ -58,7 +50,7 @@
       session.connect(apiKey, token);
       hide('connectLink')
       show('disconnectLink')
-      show('publishLink')
+      // show('publishLink')
 
     }
 
@@ -75,14 +67,12 @@
         var publisherDiv = document.createElement('div'); // Create a div for the publisher to replace
         publisherDiv.setAttribute('id', 'opentok_publisher');
         parentDiv.appendChild(publisherDiv);
-        var publisherProps = {width: VIDEO_WIDTH, height: VIDEO_HEIGHT};
+        var publisherProps = {width: 38, height: 38};
         publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);  // Pass the replacement div id and properties
         session.publish(publisher);
 
         show('unpublishLink');
         hide('publishLink');
-        show('largeLink');
-        show('smallLink');
       }
     }
 
@@ -94,9 +84,6 @@
 
       show('publishLink');
       hide('unpublishLink');
-      hide('regularLink');
-      hide('largeLink')
-      hide('smallLink')
     }
 
     function makeLarge() {
@@ -108,9 +95,6 @@
       var publisherProps = {width: 640, height: 480};
       publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
       session.publish(publisher);
-      show('regularLink');
-      show('smallLink');
-      hide('largeLink');
 
     }
 
@@ -123,9 +107,6 @@
       var publisherProps = {width: 160, height: 120};
       publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
       session.publish(publisher);
-      show('regularLink');
-      show('largeLink');
-      hide('smallLink');
 
 
     }
@@ -139,9 +120,6 @@
       var publisherProps = {width: 320, height: 240};
       publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
       session.publish(publisher);
-      show('largeLink');
-      show('smallLink');
-      hide('regularLink');
     }
 
 
@@ -149,7 +127,6 @@
     function sessionConnectedHandler(event) {
       // Subscribe to all streams currently in the Session
       console.log(event)
-      for (var i = 0; i < event.connections.length; i++) { alert(event.connections[i].data) };
       for (var i = 0; i < event.streams.length; i++) {
         addStream(event.streams[i]);
       }
@@ -179,9 +156,6 @@
       hide('disconnectLink');
       hide('publishLink');
       hide('unpublishLink');
-      hide('regularLink');
-      hide('largeLink')
-      hide('smallLink')
     }
 
     function connectionDestroyedHandler(event) {
@@ -224,7 +198,7 @@
 
 </script>
 
-role: <%= @role %> 
+<!-- role: <%= @role %> 
 <p>
   <b>User:</b>
   <%= @section.user_id %>
@@ -233,66 +207,36 @@ role: <%= @role %>
 <p>
   <b>Session:</b>
   <%= @section.session_id %>
-</p>
+</p> -->
+<h1 class="title"> Intro to Cantonese
+</h1>
 
-<p>
+
+<p class="token">
   <% if session[:token].present? %>
-    <b>Token:</b> <%= session[:token] %>
-    <%= link_to "Get New Token", "/sections/#{@section.id}/get_token" %>
+    <!-- <b>Token:</b> <%= session[:token] %> -->
+    <%= link_to "Reset section", "/sections/#{@section.id}/get_token" %>
   <% else %>
-    <%= link_to "Get Token", "/sections/#{@section.id}/get_token" %>
+    <%= link_to "Reset section", "/sections/#{@section.id}/get_token" %>
   <% end %> 
 </p>
 
 <div id="links">
-      <p>
-        <input type="button" value="Connect" id ="connectLink" onClick="javascript:connect()" />
-        <input type="button" value="Leave" id ="disconnectLink" onClick="javascript:disconnect()" />
-        <input type="button" value="Start Publishing" id ="publishLink" onClick="javascript:startPublishing()" />
-        <input type="button" value="Stop Publishing" id ="unpublishLink" onClick="javascript:stopPublishing()" />
-      <p>
-      <p>
-        <input type="button" value="Large" id ="largeLink" onClick="javascript:makeLarge()" />
-        <input type="button" value="Small" id ="smallLink" onClick="javascript:makeSmall()" />
-        <input type="button" value="Regular" id ="regularLink" onClick="javascript:makeRegular()" />
-      </p>
+      <ul class="link_list">
+        <li><input type="button" value="Enter Class" id ="connectLink" onClick="javascript:connect()" class="btn_blue"/></li> 
+        <li><input type="button" value="Leave Class" id ="disconnectLink" onClick="javascript:disconnect()" class="btn_blue" /></li>
+        <li><input type="button" value="Start Your Video" id ="publishLink" onClick="javascript:startPublishing()" class="btn_grn" /></li>
+        <li><input type="button" value="Stop Your Video" id ="unpublishLink" onClick="javascript:stopPublishing()" class="btn_blue" /></li>
+        <li id="myCamera"></li>
+      </ul>
+
 </div>
 
-<div id="myCamera" class="publisherContainer"></div>
+<div id="streams">
 <div id="teacher"></div>
 <div id="students"></div>
+</div>
 
-
-  <!--Drop down menus for selecting line thickness and color-->
-<!--   <div id="controls">
-    Size:
-    <select id="thickness" class="fixed">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-    </select>
- 
-    Color:
-    <select id="color">
-      <option value="#FFFFFF">#FFFFFF</option>
-      <option value="#AAAAAA">#AAAAAA</option>
-      <option value="#666666">#666666</option>
-      <option value="#000000">#000000</option>
-      <option value="#9BA16C">#9BA16C</option>
-      <option value="#CC8F2B">#CC8F2B</option>
-      <option value="#63631D">#63631D</option>
-    </select>
-  </div> -->
- 
-  <!--The canvas where drawings will be displayed-->
-  <!-- <canvas id="canvas"></canvas> -->
- 
-  <!--A status text field, for displaying connection information-->
-  <!-- <div id="status"></div> -->
 
 
 <script type="text/javascript" charset="utf-8">
@@ -300,9 +244,6 @@ role: <%= @role %>
     hide('disconnectLink')
     hide('publishLink')
     hide('unpublishLink')
-    hide('largeLink')
-    hide('smallLink')
-    hide('regularLink')
 </script>
 
 
