@@ -39,15 +39,16 @@ body {
 }
 
 .teacher{
-/*  width: 960px;
+  width: 960px;
   height: 600px;
-  float: left;*/
+  margin: 0 auto 10px;
 }
 
 .students{
   /*width: 160px;*/
   height: 120px;
-  /*float: left;*/
+  width: 960px;
+  margin: auto;
 }
 
 .link_list li{

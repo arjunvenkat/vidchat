@@ -14,8 +14,8 @@
   var session;
   var publisher;
   var subscribers ={}
-  var VIDEO_WIDTH = 160;
-  var VIDEO_HEIGHT = 120;
+  var VIDEO_WIDTH = 240;
+  var VIDEO_HEIGHT = 160;
 
   TB.setLogLevel(TB.DEBUG);
   TB.addEventListener(TB.EXCEPTION, exceptionHandler);
@@ -85,43 +85,6 @@
       show('publishLink');
       hide('unpublishLink');
     }
-
-    function makeLarge() {
-      session.unpublish(publisher);
-      var parentDiv = document.getElementById("myCamera");
-      var publisherDiv = document.createElement('div');
-      publisherDiv.setAttribute('id', 'opentok_publisher');
-      parentDiv.appendChild(publisherDiv);
-      var publisherProps = {width: 640, height: 480};
-      publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
-      session.publish(publisher);
-
-    }
-
-    function makeSmall() {
-      session.unpublish(publisher);
-      var parentDiv = document.getElementById("myCamera");
-      var publisherDiv = document.createElement('div');
-      publisherDiv.setAttribute('id', 'opentok_publisher');
-      parentDiv.appendChild(publisherDiv);
-      var publisherProps = {width: 160, height: 120};
-      publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
-      session.publish(publisher);
-
-
-    }
-
-    function makeRegular() {
-      session.unpublish(publisher);
-      var parentDiv = document.getElementById("myCamera");
-      var publisherDiv = document.createElement('div');
-      publisherDiv.setAttribute('id', 'opentok_publisher');
-      parentDiv.appendChild(publisherDiv);
-      var publisherProps = {width: 320, height: 240};
-      publisher = TB.initPublisher(apiKey, publisherDiv.id, publisherProps);
-      session.publish(publisher);
-    }
-
 
 
     function sessionConnectedHandler(event) {
