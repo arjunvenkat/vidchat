@@ -31,25 +31,16 @@ body {
 
 }
 
-#streams{
-  width: 960px;
-  height: 720px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.teacher{
-  width: 960px;
-  height: 600px;
-  margin: 0 auto 10px;
-}
-
-.students{
-  /*width: 160px;*/
-  height: 120px;
+.streams{
   width: 960px;
   margin: auto;
 }
+
+#teacher{
+  margin-bottom: 10px;
+}
+
+
 
 .link_list li{
   display: inline;
