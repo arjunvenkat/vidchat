@@ -1,11 +1,13 @@
 Vidchat::Application.routes.draw do
+  resources :courses
+
   resources :enrollments
 
   resources :sections
 
   resources :users
 
-  root to: 'sections#index'
+  root to: 'courses#index'
 
   get "/profile" => 'users#profile', :as => :profile
   

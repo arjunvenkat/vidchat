@@ -43,6 +43,7 @@ class SectionsController < ApplicationController
   # GET /sections/new.json
   def new
     @section = Section.new
+    @section.course_id = params[:course_id]
 
     @API_KEY = "17321802"               # should be a string
     @API_SECRET = "3a90fda1362d50aed4b04f3f01456153d2e956be"          # should be a string
