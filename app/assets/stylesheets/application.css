@@ -87,10 +87,10 @@ body {
   background: -o-linear-gradient(top, #5071cd 0%,#1b3d97 100%); /* Opera 11.10+ */
   background: -ms-linear-gradient(top, #5071cd 0%,#1b3d97 100%); /* IE10+ */
   background: linear-gradient(to bottom, #5071cd 0%,#1b3d97 100%); /* W3C */
-  border-top: 1px solid ##738BCD;
-  border-right: 1px solid ##081F5F;
-  border-bottom: 1px solid ##081F5F;
-  border-left: 1px solid ##738BCD;
+  border-top: 1px solid #738BCD;
+  border-right: 1px solid #081F5F;
+  border-bottom: 1px solid #081F5F;
+  border-left: 1px solid #738BCD;
 }
 
 .btn_red{  
@@ -101,10 +101,10 @@ body {
   background: -o-linear-gradient(top, #5071cd 0%,#1b3d97 100%); /* Opera 11.10+ */
   background: -ms-linear-gradient(top, #5071cd 0%,#1b3d97 100%); /* IE10+ */
   background: linear-gradient(to bottom, #5071cd 0%,#1b3d97 100%); /* W3C */
-  border-top: 1px solid ##738BCD;
-  border-right: 1px solid ##081F5F;
-  border-bottom: 1px solid ##081F5F;
-  border-left: 1px solid ##738BCD;
+  border-top: 1px solid #738BCD;
+  border-right: 1px solid #081F5F;
+  border-bottom: 1px solid #081F5F;
+  border-left: 1px solid #738BCD;
 }
 
 a.btn_blue:hover, a.btn_grn:hover, a.btn_red:hover, button.btn_blue:hover, button.btn_grn:hover, button.btn_red:hover{
