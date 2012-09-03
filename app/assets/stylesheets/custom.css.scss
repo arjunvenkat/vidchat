@@ -1,0 +1,196 @@
+html  {
+                          font-family: bree serif;
+                          font-size: 10px;
+
+
+// Header
+
+
+.container {
+                          width: 978px;
+                          overflow: hidden;
+}
+
+  .main-content {
+                          min-height:1000px;
+                          padding-top: 70px;
+}
+
+#small-nav {
+                          padding-top: 50px;
+  .subnav {
+                            border-bottom: 1px solid #efefef;
+    .nav-pills {
+      li {
+          a {
+              &:hover {
+                            background-color: #F68C51;
+                            color: #fff
+          }
+        }
+      }
+    }
+  }
+}
+
+// Home page
+
+.landing-picture {
+                          background: url(image_path('background.jpg')) no-repeat center;
+                          border-radius:20px;
+                          margin-top: -30px;
+}
+
+.hero-unit {
+                          margin: 15px;
+                          border-radius: 10px;
+                          background-color: #fff;
+
+  h2 {
+                          font-family: open sans;
+                          font-size: 40px;
+                          color: #444;
+                          text-shadow: 0 1px 0 grey;
+
+    // p {
+    //                       font-family: bree serif;
+    // }
+  }
+}
+
+.main-actions {
+                          padding-top: 10px;
+                          border-radius: 10px;
+
+  #one {                  background-color: #F68C51;
+  }
+
+  #two {                  background-color: #F68C51;
+  }
+}
+.content-box {
+                          // min-height: 150px;
+                          border: 1px solid #efefef;
+                          border-radius: 20px;
+
+  #title-box {
+                          background-color: #F68C51;
+                          margin-top: 10px;
+                          margin-left: -5px;
+    h4 {
+                          color: #fff;
+                          font-size: 150%;
+                          padding-left: 5px;
+    }
+      p {
+                            font-family: bree serif;
+      }
+  }
+
+  #sub-title-box {
+                          // background-color: #F68C51;
+                          margin-top: 10px;
+                          margin-left: -5px;
+    h4 {
+                          color: #444;
+                          font-size: 120%;
+                          padding-left: 5px;
+    }
+      p {
+                          font-family: bree serif;
+      }
+    #course-box {
+                          border: solid 1px #efefef;
+                          padding: 10px;
+
+      img {
+                          margin: 10px;
+                          border-radius:10px
+      }
+        p {
+                          color: grey;
+        }
+    }
+  }
+}
+
+#classes {
+                          background-color: #d9d9d9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-inner            {              //background: white;//#55ab55;
+                                        // max-width: 1000px;
+                                        // height:  100px;
+                                        // opacity: 0.75;
+.brand                   {              //text-shadow: none;
+                                        // margin-top: 40px;
+                                        font-family: pacifico;
+                                        font-size: 150%;
+                                        color: #fff;}
+                          }
+
+
+
+
+
+    footer             {
+                                        // color: #666;
+                                        background: #efefef;
+                                        padding: 17px 0 18px 0;
+                                        // border-top: 1px solid #efefef;
+                                        margin-top: -10px;
+
+
+    .wrapper           {                min-height: 100%;
+                                        height: auto !important;
+                                        height: 100%;
+                                        margin: 0 auto -63px;
+                        }
+
+    .push              {                height: 63px;
+                        }
+
+  .nav > li > a      {
+    // color: #999;
+                                        text-shadow: none;
+    &:hover           {                 background-color: #F68C51;
+                                        color: #efefef;
+                        }
+                       }
+
+    #copy-right        {                font-size: 80%;
+                                        color: #999;
+                        }}
+
+                      }

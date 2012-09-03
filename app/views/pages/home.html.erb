@@ -1,0 +1,71 @@
+<div class="landing-picture">
+
+
+  <div class="row">
+    <div class="span6  offset3">
+      <div class="hero-unit">
+        <%= image_tag "http://static.opentok.com/opentok/assets/img/about/us/carousel/GetHired.jpg", :width => "400px", :class => "logo" %>
+        <h2>Class Connect</h2>
+        <p>The persuit of knowledge should not be bound by geography.</p>
+  <%# if user_signed_in? %>
+  <%# else %>
+        <ul>
+          <%= link_to "Register", "#", :class => "btn btn-warning" %>
+          <%= link_to "Sign in with facebook", "#", :class => "btn btn-primary" %>
+        </ul>
+    <%# end %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <div class="main-actions span3 offset2" id="one">
+    <%= link_to "Teach a course", new_course_path, :class => "btn btn-primary btn-large" %>
+  </div>
+
+  <div class="main-actions span3 offset2" id ="two">
+    <%= link_to "Find a course", courses_path, :class => "btn btn-warning btn-large" %>
+  </div>
+
+<div class="container content-box">
+  <div class="span12" id="title-box"><h4>Browse Classes</h4></div>
+  <div class="span3" id="subject-box">
+    <h4>subject title</h4>
+    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+  </div>
+  <div class="span3" id="subject-box">
+    <h4>subject title</h4>
+    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+  </div>
+  <div class="span3" id="subject-box">
+    <h4>subject title</h4>
+    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+  </div>
+  <div class="span3" id="subject-box">
+    <h4>subject title</h4>
+    <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+  </div>
+</div>
+
+<div class="container content-box" id="classes">
+  <div id="sub-title-box">
+    <h4 class="span3">Whats happening this week?</h4>
+  </div></br><br>
+  <div class="span3" id="course-box">
+    <%= image_tag 'https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcTfz4bKh_Sz5r2yEDkrj4kwc9mntxb463I0sSbglRbjbFK9IDOaVw', :size => '100' %>
+    <p>Cooking 101: Learn the basics</p>
+  </div>
+  <div class="span3 offset1" id="course-box">
+    <%= image_tag 'https://encrypted-tbn3.google.com/images?q=tbn:ANd9GcTe7CroungmiGi42wxedSU7WjB9_LJV_hdFBm4dEikrgoeOFSM00w', :size => '100' %>
+    <p>All about data stores, mySQL, MongoDB, Postgres</p>
+  </div>
+  <div class="span3 offset1 " id="course-box">
+    <%= image_tag 'https://encrypted-tbn2.google.com/images?q=tbn:ANd9GcQHXWJ0wR3qCZtDE4-DXGL-Z1DoXKp-j-AS9e-cF_a_gEKJO3AFnA', :size => '100' %>
+    <p>Web design for beginners</p>
+  </div>
+</div>
+
+
+</div>
+

@@ -1,0 +1,28 @@
+
+<h1>Browsing Courses</h1>
+<%= link_to 'New Course', new_course_path, :class => "btn btn-warning" %>
+<ul class="nav nav-tabs span12 offset3" >
+  <!-- <ul class="pull-right"> -->
+  <li class="active">
+    <li><%= link_to "Latest", "#" %></li>
+    <li><%= link_to "Most Popluar", "#/" %></li>
+    <li><%= link_to "Recommended for you", "/#" %></li>
+    <li><%= link_to "Most talked about", "#" %></li>
+  </li>
+</ul>
+<ul class="thumbnails">
+<% @courses.each do |course| %>
+  <li class="span3">
+    <h4><%= course.title %></h4>
+    <%= link_to (image_tag "#{course.image_url}", :size => "200", :class => :thumbnail), course_path(course) %>
+    <%= course.description %><br>
+    <strong>Course orginized by:</strong>
+    <%#= course.teacher %><br>
+    <%# if current_user == course.user_id %>
+    <%= link_to 'Edit', edit_course_path(course) %>
+    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%# end %>
+    </li>
+<% end %>
+</ul>
+
