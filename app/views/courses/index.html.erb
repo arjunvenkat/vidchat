@@ -15,7 +15,7 @@
 <% @courses.each do |course| %>
   <li class="span3">
     <h4><%= course.title %></h4>
-    <%= link_to (image_tag "#{course.image_url}", :size => "200", :class => :thumbnail), course_path(course) %>
+    <%= link_to (image_tag "#{course.image_url}", :size => "200x200", :class => :thumbnail), course_path(course) %>
     <%= course.description %><br>
     <strong>Course orginized by:</strong>
     <%#= course.teacher %><br>
