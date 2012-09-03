@@ -1,6 +1,6 @@
 html  {
-                          font-family: bree serif;
-                          font-size: 10px;
+      font-family: bree serif;
+      font-size: 10px;
 
 
 // Header
@@ -24,7 +24,7 @@ html  {
       li {
           a {
               &:hover {
-                            background-color: #F68C51;
+                            background-color: #adc3d8;
                             color: #fff
           }
         }
@@ -62,10 +62,10 @@ html  {
                           padding-top: 10px;
                           border-radius: 10px;
 
-  #one {                  background-color: #F68C51;
+  #one {                  background-color: #adc3d8;
   }
 
-  #two {                  background-color: #F68C51;
+  #two {                  background-color: #adc3d8;
   }
 }
 .content-box {
@@ -74,7 +74,7 @@ html  {
                           border-radius: 20px;
 
   #title-box {
-                          background-color: #F68C51;
+                          background-color: #adc3d8;
                           margin-top: 10px;
                           margin-left: -5px;
     h4 {
@@ -88,7 +88,7 @@ html  {
   }
 
   #sub-title-box {
-                          // background-color: #F68C51;
+                          // background-color: #adc3d8;
                           margin-top: 10px;
                           margin-left: -5px;
     h4 {
@@ -117,33 +117,6 @@ html  {
 #classes {
                           background-color: #d9d9d9;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -184,7 +157,7 @@ html  {
   .nav > li > a      {
     // color: #999;
                                         text-shadow: none;
-    &:hover           {                 background-color: #F68C51;
+    &:hover           {                 background-color: #adc3d8;
                                         color: #efefef;
                         }
                        }
@@ -194,3 +167,12 @@ html  {
                         }}
 
                       }
+
+.hero-unit ul li{
+  list-style: none;
+  
+}
+
+.hero-unit ul {
+  margin-left: 0;
+}
