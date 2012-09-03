@@ -3,33 +3,24 @@
 <head>
   <title>Vidchat</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href='http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400italic,400|Bree+Serif' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield :head %>
 </head>
 <body>
+  <%= render "/layouts/header" %>
+  <div class="container">
+  <div class="main-content">
 
-	<header>
-			<nav>
-				<ul>
-					<% if session[:user_id] %>
-						<li><%= link_to "View My Profile", profile_url %></li>
-						<li><%= link_to "Sign Out", signout_url %></li>
-					<% else %>
-						<li><%= link_to "Sign Up", new_user_url %></li>
-						<li><%= link_to "Sign In", signin_url %></li>
-					<% end %>
-				</ul>
-			</nav>
-			<p>
-			  <% if session[:user_id] %>
-			    <% u = User.find_by_id(session[:user_id]) %>
-			    Hello, <%= u.name %>
-			 <% end %>
-			</p>
-	</header>
 
-<%= yield %>
+
+    <%= yield %>
+    </div>
+
+  </div>
+
+  <%= render "/layouts/footer" %>
 
 </body>
 </html>
