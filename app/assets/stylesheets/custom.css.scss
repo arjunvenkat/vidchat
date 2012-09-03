@@ -176,3 +176,21 @@ html  {
 .hero-unit ul {
   margin-left: 0;
 }
+
+h1.classname{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+  font-size: 60px;
+}
+
+.link_list li{
+  list-style: none;
+  float:left;
+  margin: 0 5px;
+}
+
+
+.streams{
+  clear: both;
+}
