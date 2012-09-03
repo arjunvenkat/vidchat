@@ -19,7 +19,7 @@
     <%= course.description %><br>
     <strong>Course orginized by:</strong>
     <%#= course.teacher %><br>
-    <%# if current_user == course.user_id %>
+    <%# if session[:user_id] == course.user_id %>
     <%= link_to 'Edit', edit_course_path(course) %>
     <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
     <%# end %>

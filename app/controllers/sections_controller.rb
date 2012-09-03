@@ -26,12 +26,17 @@ class SectionsController < ApplicationController
     @section = Section.find(params[:id])
     @API_KEY = "17321802"               # should be a string
     @API_SECRET = "3a90fda1362d50aed4b04f3f01456153d2e956be"
+    @OTSDK = OpenTok::OpenTokSDK.new @API_KEY, @API_SECRET
 
     if session["user_id"] == @section.user_id
+      ot_role = OpenTok::RoleConstants::MODERATOR
       @role = "teacher"
     else 
       @role = "student"
+      ot_role = OpenTok::RoleConstants::PUBLISHER
     end 
+
+    session[:token] = @OTSDK.generateToken :session_id => @session_id, :role => ot_role, :connection_data => @role
 
     respond_to do |format|
       format.html # show.html.erb

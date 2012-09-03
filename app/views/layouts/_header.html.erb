@@ -1,7 +1,7 @@
  <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-    <%= link_to "Class Connect", "#", :class => "brand" %>
+    <%= link_to "Class Connect", root_url, :class => "brand" %>
       <div class="subnav pull-right">
         <ul class="nav nav-pills">
           <% if session[:user_id] %>
@@ -20,7 +20,7 @@
 <div class="span12" id="small-nav">
   <div class="subnav pull-right">
     <ul class="nav nav-pills">
-      <li class><%= link_to "Home Page", "#" %></li>
+      <li class><%= link_to "Home Page", root_url %></li>
       <li class><%= link_to "Classes", courses_url %></li>
       <li class><%= link_to "Categories", "#" %></li>
       <li class><%= link_to "Teachers", "#" %></li>
