@@ -1,11 +1,4 @@
 
-<p>
-Session id: <%= "#{@session_id}" %>
-</p>
-
-<p>
-User id: <%= session[:user_id] %>
-</p>
 
 <%= form_for(@section) do |f| %>
   <% if @section.errors.any? %>
@@ -21,6 +14,15 @@ User id: <%= session[:user_id] %>
   <% end %>
 
   <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br />
+    <%= f.time_select :time %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :course_id %>
     <%= f.hidden_field :user_id, {:value => session[:user_id]} %>
     <%= f.hidden_field :session_id, {:value => @session_id} %>
   </div>

@@ -16,6 +16,7 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
@@ -31,6 +32,16 @@
   <div class="field">
     <%= f.label :category_id %><br />
     <%#= f.collection_select :category_id %>
+
+    <%= f.hidden_field :user_id, {value: session[:user_id]} %><br />
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :objectives %><br />
+    <%= f.text_field :objectives %>
   </div>
   <div class="actions">
     <%= f.submit %>

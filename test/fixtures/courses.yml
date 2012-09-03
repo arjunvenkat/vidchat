@@ -2,6 +2,7 @@
 
 one:
   title: MyString
+<<<<<<< HEAD
   description: MyString
   prerequisites: MyString
   user_id: 
@@ -15,3 +16,16 @@ two:
   user_id: 
   image_url: MyString
   category_id: 1
+=======
+  user_id: 1
+  description: MyText
+  objectives: MyString
+  prequisites: MyString
+
+two:
+  title: MyString
+  user_id: 1
+  description: MyText
+  objectives: MyString
+  prequisites: MyString
+>>>>>>> fef0724cefc24fd11878cb96dbbdeba0d497174b
