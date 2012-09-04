@@ -211,3 +211,7 @@ h1.classname{
 /*#student{
   height: 
 }*/
+
+.browse-course li:nth-child(4n+5) {
+  clear: both;
+}
