@@ -215,3 +215,10 @@ h1.classname{
 .browse-course li:nth-child(4n+5) {
   clear: both;
 }
+
+.browse-course li{
+  background: #d9d9d9;
+  padding: 0 2px 0 7px;
+  border-radius: 7px;
+}
+
