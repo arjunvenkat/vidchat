@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-config.assets.precompile += %w( *.js *.css )
+
 
 module Vidchat
   class Application < Rails::Application
