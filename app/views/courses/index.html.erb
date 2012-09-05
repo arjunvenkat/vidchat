@@ -15,14 +15,15 @@
 <% @courses.each do |course| %>
   <li class="span3">
     <h4><%= course.title %></h4>
-    <%= link_to (image_tag "#{course.image_url}", :size => "200x200", :class => :thumbnail), course_path(course) %>
+
+    <%= link_to (image_tag course.image_url, :size => "200x200", :class => :thumbnail), course_path(course) %>
     <%= course.description %><br>
-    <strong>Course organized by:</strong>
-    <%#= course.teacher %><br>
-    <%# if session[:user_id] == course.user_id %>
-    <%= link_to 'Edit', edit_course_path(course) %>
-    <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%# end %>
+    <strong>Taught by:</strong>
+    <%= User.find_by_id(course.user_id).name %><br>
+    <% if session[:user_id] == course.user_id %>
+        <%= link_to 'Edit', edit_course_path(course) %>
+        <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
     </li>
 <% end %>
 </ul>
