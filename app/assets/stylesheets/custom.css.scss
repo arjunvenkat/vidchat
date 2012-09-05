@@ -13,15 +13,18 @@ html  {
 
   .main-content {
                           min-height:1000px;
-                          padding-top: 70px;
+                          padding-top: 50px;
 }
+
 
 #small-nav {
                           padding-top: 50px;
   .subnav {
                             border-bottom: 1px solid #efefef;
+                            padding-top: 40px;
     .nav-pills {
-      li {
+
+      li { 
           a {
               &:hover {
                             background-color: #adc3d8;
@@ -31,6 +34,17 @@ html  {
       }
     }
   }
+}
+
+.navbar .brand {
+  float: left;
+  display: block;
+  padding: 5px 20px 5px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #333333;
+  text-shadow: 0 1px 0 #eeeeee;
 }
 
 // Home page
